@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "strictNullChecks": true,
+    "strict": false,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
+  }
+}
