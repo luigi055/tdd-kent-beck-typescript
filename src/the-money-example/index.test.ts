@@ -18,4 +18,9 @@ describe("Testing the money example", () => {
     product = five.times(3);
     expect(product.amount).toBe(15);
   });
+
+  it("should be true if 5$ is equal to 5$ and false when different than 5$", () => {
+    expect(new Dollar(5).equals(new Dollar(5))).toBeTruthy();
+    expect(new Dollar(5).equals(new Dollar(6))).toBeFalsy();
+  });
 });
