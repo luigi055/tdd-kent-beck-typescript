@@ -15,7 +15,7 @@
   },
   "scripts": {
     "start": "npx ts-node ./src/index.ts",
-    "test": "npx jest",
+    "test": "npx jest --clearCache && npx jest",
     "test:watch": "npm test -- --watch"
   },
   "author": "Pedro La Rosa",
