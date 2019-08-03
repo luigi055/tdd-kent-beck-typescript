@@ -1,5 +1,5 @@
 export default abstract class Currency {
-  constructor(protected amount: number = 0) {}
+  constructor(protected amount: number = 0, protected kindOfCurrency: string) {}
 
   abstract times(multiplier: number): Currency;
 
@@ -12,5 +12,9 @@ export default abstract class Currency {
       this.amount === currency.amount &&
       this.isTheSameCurrency(currency.constructor.name)
     );
+  }
+
+  public currency(): string {
+    return this.kindOfCurrency;
   }
 }

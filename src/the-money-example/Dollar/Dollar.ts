@@ -1,7 +1,8 @@
 import Currency from "../Currency";
+import Money from "../Money";
 
 export default class Dollar extends Currency {
   public times(multiplier: number): Currency {
-    return new Dollar(this.amount * multiplier);
+    return Money.dollar(this.amount * multiplier);
   }
 }
