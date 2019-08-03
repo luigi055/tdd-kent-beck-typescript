@@ -1,4 +1,6 @@
 import Currency from "./Currency";
+import Franc from "./Franc";
+import Dollar from "./Dollar";
 
 describe("Testing the money example", () => {
   it("Should double the amount of the money when use the times method by 2", () => {
@@ -18,5 +20,9 @@ describe("Testing the money example", () => {
   it("should be true if 5 is equal to 5 and false when different than 5", () => {
     expect(new Currency(5).equals(new Currency(5))).toBeTruthy();
     expect(new Currency(5).equals(new Currency(6))).toBeFalsy();
+  });
+
+  test("5 Francs should be different to 5 Dollars", () => {
+    expect(new Franc(5).equals(new Dollar(5))).toBeFalsy();
   });
 });
