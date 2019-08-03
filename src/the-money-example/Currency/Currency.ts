@@ -1,12 +1,10 @@
-export default class Currency {
+export default abstract class Currency {
   constructor(protected amount: number = 0) {}
+
+  abstract times(multiplier: number): Currency;
 
   private isTheSameCurrency(currencyNameToCompare: string): boolean {
     return this.constructor.name === currencyNameToCompare;
-  }
-
-  public times(multiplier: number): Currency {
-    return new Currency(this.amount * multiplier);
   }
 
   public equals(currency: Currency): boolean {
