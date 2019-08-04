@@ -50,12 +50,13 @@ describe("Testing the money example", () => {
   });
 
   it("should return sum", () => {
-    const five: Currency = Money.dollar(5);
-    const result: Expression = five.plus(five);
-    const sum: Sum = result;
+    const five = Money.dollar(5);
+    const result = five.plus(five);
 
-    expect(five).toEqual(sum.augend);
-    expect(five).toEqual(sum.addend);
+    const sum = result as Sum;
+
+    expect(sum.augend).toEqual(five);
+    expect(sum.addend).toEqual(five);
   });
 
   it("should reduce sum", () => {
@@ -80,5 +81,16 @@ describe("Testing the money example", () => {
     const result: Currency = bank.reduce(Money.franc(2), "USD");
 
     expect(Money.dollar(1)).toEqual(result);
+  });
+
+  it("should sum two 5 dollars and 10 francs and return 10 dollars when the exchange USD-CHF is 2", () => {
+    const fiveBucks: Expression = Money.dollar(5);
+    const tenFrancs: Expression = Money.franc(10);
+
+    const bank: Bank = new Bank();
+    bank.addRate("CHF", "USD", 2);
+
+    const result: Currency = bank.reduce(fiveBucks.plus(tenFrancs), "USD");
+    expect(Money.dollar(10)).toEqual(result);
   });
 });
