@@ -93,4 +93,28 @@ describe("Testing the money example", () => {
     const result: Currency = bank.reduce(fiveBucks.plus(tenFrancs), "USD");
     expect(Money.dollar(10)).toEqual(result);
   });
+
+  it("should test sum after to plus money", () => {
+    const fiveBucks: Expression = Money.dollar(5);
+    const tenFrancs: Expression = Money.franc(10);
+    const bank: Bank = new Bank();
+
+    bank.addRate("CHF", "USD", 2);
+    const sum: Expression = new Sum(fiveBucks, tenFrancs).plus(fiveBucks);
+    const result: Currency = bank.reduce(sum, "USD");
+
+    expect(Money.dollar(15)).toEqual(result);
+  });
+
+  it("should sum 5$ and 10 francs and then multiply the value by 2", () => {
+    const fiveBucks: Expression = Money.dollar(5);
+    const tenFrancs: Expression = Money.franc(10);
+    const bank: Bank = new Bank();
+
+    bank.addRate("CHF", "USD", 2);
+    const sum: Expression = new Sum(fiveBucks, tenFrancs).times(2);
+    const result: Currency = bank.reduce(sum, "USD");
+
+    expect(Money.dollar(20)).toEqual(result);
+  });
 });

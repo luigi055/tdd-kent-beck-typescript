@@ -1,5 +1,5 @@
-import Expression from "./Expressions/interface";
-import Currency from "./Currency";
+import Expression from "../Expressions/interface";
+import Currency from "../Currency";
 
 interface Rates {
   [index: string]: number;
