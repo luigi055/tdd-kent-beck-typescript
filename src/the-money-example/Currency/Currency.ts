@@ -1,5 +1,9 @@
-export default class Currency {
-  constructor(protected amount: number = 0, protected kindOfCurrency: string) {}
+import Money from "../Money";
+
+export interface Expression {}
+
+export default class Currency implements Expression {
+  constructor(public amount: number = 0, protected kindOfCurrency: string) {}
 
   public times(multiplier: number): Currency {
     return new Currency(this.amount * multiplier, this.kindOfCurrency);
@@ -13,6 +17,10 @@ export default class Currency {
     return (
       this.amount === money.amount && this.isTheSameCurrency(money.currency())
     );
+  }
+
+  public plus(money: Currency): Expression {
+    return new Currency(this.amount + money.amount, this.kindOfCurrency);
   }
 
   public currency(): string {

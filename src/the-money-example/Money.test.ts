@@ -1,5 +1,7 @@
 import Money from "./Money";
-import Currency from "./Currency";
+import Currency, { Expression } from "./Currency";
+
+import Bank from "./Bank";
 
 describe("Testing the money example", () => {
   it("Should double the amount of the money when use the times method by 2", () => {
@@ -34,5 +36,14 @@ describe("Testing the money example", () => {
 
   it("should return CHF when you ask to Franc what is kind of currency it is", () => {
     expect(Money.franc(5).currency()).toBe("CHF");
+  });
+
+  it("should return 10$ when sum 5$ plus 5$", () => {
+    const five: Currency = Money.dollar(5);
+    const sum: Expression = five.plus(Money.dollar(5));
+    const bank: Bank = new Bank();
+    const reduced = bank.reduce(sum, "USD");
+
+    expect(Money.dollar(10)).toEqual(reduced);
   });
 });
