@@ -73,4 +73,12 @@ describe("Testing the money example", () => {
 
     expect(Money.dollar(1)).toEqual(result);
   });
+
+  it("should reduce money among different correncies", () => {
+    const bank: Bank = new Bank();
+    bank.addRate("CHF", "USD", 2);
+    const result: Currency = bank.reduce(Money.franc(2), "USD");
+
+    expect(Money.dollar(1)).toEqual(result);
+  });
 });

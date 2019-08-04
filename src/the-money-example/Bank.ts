@@ -1,10 +1,26 @@
 import Expression from "./Expressions/interface";
 import Currency from "./Currency";
-import Sum from "./Expressions/Sum";
+
+interface Rates {
+  [index: string]: number;
+}
 
 export default class Bank {
+  private rates: Rates = {};
+
   reduce(source: Expression, to: string): Currency {
-    const sum: Sum = source;
-    return sum.reduce(to);
+    return source.reduce(this, to);
+  }
+
+  rate(from: string, to: string): number {
+    if (from === to) {
+      return 1;
+    }
+
+    return this.rates[`${from}-${to}`];
+  }
+
+  addRate(from: string, to: string, rate: number) {
+    this.rates[`${from}-${to}`] = rate;
   }
 }
